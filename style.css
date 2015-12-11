@@ -1,0 +1,32 @@
+#inputBox{
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+}
+.container{
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+}
+#incomp{
+	width: 40%;
+	margin: 0 auto;
+	display: inline-block;
+	background-color: blue;
+}
+
+#comp{
+	width: 40%;
+	margin: 0 auto;
+	display: inline-block;
+	background-color: red;
+	vertical-align: top;
+}
+
+.incompItem{
+	width: 100%;
+}
+
+.compItem{
+	text-decoration: line-through;
+}
