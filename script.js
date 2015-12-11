@@ -8,8 +8,6 @@ document.addEventListener("DOMContentLoaded",function(){
 	var inputTags = incompItemList.getElementsByTagName("input");
 
 	function moveNode(itemNo,whereTo){
-		// var item = itemNo;
-		// var where = whereTo; 
 		var toMoveNode = document.getElementById("div"+itemNo);
 		if(whereTo == "comp"){
 			toMoveNode.setAttribute("class","compItem");
@@ -22,20 +20,9 @@ document.addEventListener("DOMContentLoaded",function(){
 		}
 		compParent.appendChild(toMoveNode);
 	}
-	function move(){
-		// console.log("to move from one node to other");
 
-		// for(var i=0;i<inputTags.length;i++){
-		// 	if(inputTags[i].checked && inputTags[i].getAttribute("class") != "incomp"){
-		// 		getId = inputTags[i].getAttribute("id");
-		// 		console.log(getId);
-		// 		moveNode(listSize);
-		// 		break;		
-		// 	}
-		// 	else{
-		// 		console.log("skip");
-		// 	}
-		// }
+//Moves node from one list to another
+	function move(){
 		for(var i=0;i<listSize;i++){
 			var item = document.getElementById(i);
 			var dive = document.getElementById("div"+i)
@@ -56,8 +43,10 @@ document.addEventListener("DOMContentLoaded",function(){
 			} 
 		}
 	}
-	function addItem(){
-		
+
+// creates a node and appends incomp node
+
+	function addItem(){		
 		var textValue = document.getElementById("inp").value;
 		if(textValue !== ""){
 
