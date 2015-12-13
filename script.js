@@ -1,27 +1,11 @@
 document.addEventListener("DOMContentLoaded",function(){
-	console.log("ready");
-
-	document.getElementById("btn").addEventListener("click",addItem);
-	var inCompList = document.getElementById("incomp");
-	var compList = document.getElementById("comp");
-
-// creates a node and appends incomp node
-	function addItem(){		
-		console.log("inside additem");
-		var textValue = document.getElementById("inp").value;
-		if(textValue !== ""){
-			var div = document.createElement("div");
-			var text = document.createTextNode(textValue);	
-			div.appendChild(text);
-			addEvent(div);
-			inCompList.appendChild(div);
-		}
-	}
-
+var inCompList = document.getElementById("incomp");
+var compList = document.getElementById("comp");
 //Adds event to move to compList
 	var addEvent = function(element){
 		element.addEventListener("click",function(){
 			this.removeEventListener("click");
+			moveItemTo(this.innerHTML,'c'); //move in storage
 			compList.appendChild(this);
 			moveBack(this);
 		});
@@ -32,7 +16,93 @@ document.addEventListener("DOMContentLoaded",function(){
 		element.addEventListener("click",function(){
 			this.removeEventListener("click");
 			inCompList.appendChild(this);
+			moveItemTo(this.innerHTML,'i');
 			addEvent(this);
 		});
 	};
+
+var populate = function(text,ch){
+	var div = document.createElement("div");
+	var text = document.createTextNode(text);
+	div.appendChild(text);
+
+	if(ch == 'i'){
+		addEvent(div);
+		inCompList.appendChild(div);
+	}
+	else{
+		moveBack(div);
+		comp.appendChild(div);
+	}
+}
+	var list = localStorage.getItem("list");
+	var obj = JSON.parse(list);
+	for(i in obj.incomp){
+		populate(obj.incomp[i],'i');
+	}
+		
+	for(i in obj.comp){
+		populate(obj.comp[i],'c');
+	}	
+	console.log("ready");
+
+	document.getElementById("btn").addEventListener("click",addItem);
+	
+	var inCompList = document.getElementById("incomp");
+	var compList = document.getElementById("comp");
+
+// creates a node and appends incomp node, adds to local Storage
+	function addItem(){		
+		var textValue = document.getElementById("inp").value;
+		if(textValue !== ""){
+			addItemToStorage(textValue);
+			var div = document.createElement("div");
+			var text = document.createTextNode(textValue);	
+			div.appendChild(text);
+			addEvent(div);
+			inCompList.appendChild(div);
+		}
+	}
+
+//Storage Methods
+var addItemToStorage = function(item){
+	if(!(localStorage.getItem("list"))){
+		var obj = {"comp" : [],"incomp":[]};
+	}
+	else{
+		var list = localStorage.getItem("list");
+		var obj = JSON.parse(list);
+	}
+	
+	obj.incomp.push(item);
+	localStorage.setItem("list",JSON.stringify(obj)); 
+}
+
+var moveItemTo = function(text,ch){
+	var list = localStorage.getItem("list");
+	var obj = JSON.parse(list);
+	if(ch == 'c'){
+		console.log("moving to Completed");	
+		obj.comp.push(text);
+		console.log
+		for(i in obj.incomp){
+			if(text == obj.incomp[i]){
+				obj.incomp.splice(i,1);
+				break;
+			}
+		}
+	}
+	else{
+		console.log("moving to Completed");
+		obj.incomp.push(text);
+		for(i in obj.comp){
+			if(text == obj.comp[i]){
+				obj.comp.splice(i,1);
+				break;
+			}
+		}
+	}
+	console.log(obj);
+	localStorage.setItem("list",JSON.stringify(obj));
+}
 });
