@@ -1,7 +1,14 @@
 document.addEventListener("DOMContentLoaded",function(){
-var inCompList = document.getElementById("incomp");
-var compList = document.getElementById("comp");
-//Adds event to move to compList
+	console.log("ready");
+	
+	var inCompList = document.getElementById("incomp");
+	var compList = document.getElementById("comp");
+	
+	//Event
+	document.getElementById("btn").addEventListener("click",addItem);
+	
+
+	//Adds event to move to compList
 	var addEvent = function(element){
 		element.addEventListener("click",function(){
 			this.removeEventListener("click");
@@ -11,7 +18,7 @@ var compList = document.getElementById("comp");
 		});
 	};
 
-// Adds event to move to inCompList
+	// Adds event to move to inCompList
 	var moveBack = function(element){
 		element.addEventListener("click",function(){
 			this.removeEventListener("click");
@@ -21,37 +28,35 @@ var compList = document.getElementById("comp");
 		});
 	};
 
-var populate = function(text,ch){
-	var div = document.createElement("div");
-	var text = document.createTextNode(text);
-	div.appendChild(text);
+//loads elements if a list already exsist
+	if(localStorage.getItem("list")){
+		var populate = function(text,ch){
+			var div = document.createElement("div");
+			var text = document.createTextNode(text);
+			div.appendChild(text);
 
-	if(ch == 'i'){
-		addEvent(div);
-		inCompList.appendChild(div);
-	}
-	else{
-		moveBack(div);
-		comp.appendChild(div);
-	}
-}
-	var list = localStorage.getItem("list");
-	var obj = JSON.parse(list);
-	for(i in obj.incomp){
-		populate(obj.incomp[i],'i');
-	}
+			if(ch == 'i'){
+				addEvent(div);
+				inCompList.appendChild(div);
+			}
+			else{
+				moveBack(div);
+				comp.appendChild(div);
+			}
+		}
 		
-	for(i in obj.comp){
-		populate(obj.comp[i],'c');
-	}	
-	console.log("ready");
-
-	document.getElementById("btn").addEventListener("click",addItem);
+		var list = localStorage.getItem("list");
+		var obj = JSON.parse(list);
+		for(i in obj.incomp){
+			populate(obj.incomp[i],'i');
+		}
+				
+		for(i in obj.comp){
+			populate(obj.comp[i],'c');
+		}	
+	}
 	
-	var inCompList = document.getElementById("incomp");
-	var compList = document.getElementById("comp");
-
-// creates a node and appends incomp node, adds to local Storage
+	// creates a node and appends incomp node, adds to local Storage
 	function addItem(){		
 		var textValue = document.getElementById("inp").value;
 		if(textValue !== ""){
