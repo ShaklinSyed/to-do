@@ -1,27 +1,18 @@
-#inputBox{
-	width: 80%;
-	display: block;
-	margin: 0 auto;
-	text-align: center;
+*{
+	border: 0px;
+	margin: 0px;
+	box-sizing : border-box;
+	-webkit-box-sizing : border-box;
+	-moz-box-sizing : border-box;
 }
-.container{
-	width: 80%;
-	display: block;
-	margin: 0 auto;
+
+#inp{
+	border : 1px solid #000000;
 }
 #incomp{
-	width: 45%;
-	display: inline-block;
 	background-color: blue;
 }
-
 #comp{
-	width: 45%;
-	display: inline-block;
-	background-color: red;
-	vertical-align: top;
-}
-
-.compItem{
 	text-decoration: line-through;
+	background-color: red;
 }

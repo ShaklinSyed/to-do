@@ -89,7 +89,6 @@ var moveItemTo = function(text,ch){
 	if(ch == 'c'){
 		console.log("moving to Completed");	
 		obj.comp.push(text);
-		console.log
 		for(i in obj.incomp){
 			if(text == obj.incomp[i]){
 				obj.incomp.splice(i,1);
@@ -107,7 +106,7 @@ var moveItemTo = function(text,ch){
 			}
 		}
 	}
-	console.log(obj);
+	// console.log(obj);
 	localStorage.setItem("list",JSON.stringify(obj));
 }
 });
