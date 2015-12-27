@@ -6,6 +6,9 @@
 	-moz-box-sizing : border-box;
 }
 
+.inblk{
+	display: inline-block;
+}
 #inp{
 	border : 1px solid #000000;
 }
@@ -16,3 +19,13 @@
 	text-decoration: line-through;
 	background-color: red;
 }
+
+#folder{
+	width: 19%;
+	vertical-align: top;
+}
+
+#list{
+	width: 80%;
+}
+

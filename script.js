@@ -6,8 +6,11 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	//Event
 	document.getElementById("btn").addEventListener("click",addItem);
+	document.getElementById("addfolder").addEventListener("click",addFolder);
 	
-
+	function addFolder(){
+		//add a folder
+	}
 	//Adds event to move to compList
 	var addEvent = function(element){
 		element.addEventListener("click",function(){
