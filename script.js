@@ -109,7 +109,6 @@ var moveItemTo = function(text,ch){
 			}
 		}
 	}
-	// console.log(obj);
 	localStorage.setItem("list",JSON.stringify(obj));
 }
 });
